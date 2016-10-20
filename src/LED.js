@@ -5,12 +5,14 @@ export default class LED {
   }
 
   changeColor(newColor) {
-    if (newColor === "red") {
-      this.color = "red";
-    } else if (newColor === "green") {
-      this.color = "green";
-    } else {
-      this.color = "blue";
+    if (newColor !== this.color) {
+      if (newColor === "red") {
+        this.color = "red";
+      } else if (newColor === "green") {
+        this.color = "green";
+      } else {
+        this.color = "blue";
+      }
     }
   }
 

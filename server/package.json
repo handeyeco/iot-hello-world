@@ -2,10 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "mocha tests --compilers js:babel-core/register",
-    "start": "babel-node src/app.js"
+    "start": "babel-node src/app.js",
+    "build": "babel src --out-dir dist"
   },
   "keywords": [],
   "author": "",

@@ -29,7 +29,9 @@ app.use(_bodyParser2.default.urlencoded({ extended: true }));
 // Create instance of LED class
 var led = new _LED2.default();
 
-// ROUTES
+// -------------------------->
+// ROUTES -------------------->
+// ---------------------------->
 app.get("/color", function (req, res) {
   console.log("Color is set to: " + led.color);
 
@@ -40,7 +42,8 @@ app.post("/color", function (req, res) {
 
   // Grab color from body of the request
   var color = req.body.color;
-  console.log("Setting to: " + color);
+  console.log("Setting to: ");
+  console.log(color);
 
   // Change LED color
   led.changeColor(color);
@@ -57,5 +60,6 @@ app.post("/color", function (req, res) {
   res.json({ color: led.color });
 });
 
+// Start the app and log the port
 app.listen(port);
 console.log("Listening on " + port);

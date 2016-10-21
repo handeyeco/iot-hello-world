@@ -17,9 +17,9 @@ export default class app extends Component {
   constructor(props) {
     super(props);
 
-
     // Init with signal for loading and falsy color value
     this.state = {
+      URL: 'http://localhost:8080/color',
       loading: true,
       active: null
     }
@@ -28,7 +28,7 @@ export default class app extends Component {
     // Call server for current color
     this.requestColor();
 
-    // Request color every  five second
+    // Request color every  five seconds
     setInterval(this.requestColor.bind(this), 5000);
   }
 
@@ -51,7 +51,7 @@ export default class app extends Component {
     };
 
     // POST new color
-    fetch('http://localhost:8080/color', settings);
+    fetch(this.state.URL, settings);
 
     // Request color
     this.requestColor();
@@ -62,7 +62,7 @@ export default class app extends Component {
   requestColor() {
 
     // Fetch request
-    fetch('http://localhost:8080/color')
+    fetch(this.state.URL)
       .then((response) => {
         response.json().then((data) => {
 
@@ -82,9 +82,9 @@ export default class app extends Component {
     let active = this.state.active,
 
         // Highlight view if it's the current color
-        blue  = active === "blue"   ? "#3079AB" : "#1E4C6B",
-        green = active === "green"  ? "#79AB30" : "#4C6B1E",
-        red   = active === "red"    ? "#AB303C" : "#6B1E25";
+        blue  = active === "blue"   ? "#14D4F4" : "#0D8599",
+        green = active === "green"  ? "#8EE000" : "#598C00",
+        red   = active === "red"    ? "#E53838" : "#8F2323";
 
     // If loading, show spinner
     if (this.state.loading) {

@@ -32,7 +32,8 @@ app.post("/color", function(req, res) {
 
   // Grab color from body of the request
   let color = req.body.color;
-  console.log("Setting to: " + color);
+  console.log("Setting to: ");
+  console.log(color);
 
   // Change LED color
   led.changeColor(color);

@@ -19,7 +19,7 @@ export default class app extends Component {
 
     // Init with signal for loading and falsy color value
     this.state = {
-      URL: 'http://localhost:8080/color',
+      URL: 'https://iot-hello-world.herokuapp.com/color',
       loading: true,
       active: null
     }
@@ -29,7 +29,7 @@ export default class app extends Component {
     this.requestColor();
 
     // Request color every  five seconds
-    setInterval(this.requestColor.bind(this), 5000);
+    // setInterval(this.requestColor.bind(this), 5000);
   }
 
 

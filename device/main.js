@@ -1,6 +1,8 @@
 const wifi = require('Wifi');
 const http = require('http');
 
+const {ssid, pw} = require('./private/wifi.js');
+
 let interval = 5000,
     color = null;
 
@@ -10,7 +12,7 @@ let httpOptions = {
   method: 'GET'
 };
 
-wifi.connect("CenturyLink1796", { password: "3ebc73c7dkebra" }, error => {
+wifi.connect(ssid, { password: pw }, error => {
   if (error) {
     console.error("WiFi error: " + error)
   } else {

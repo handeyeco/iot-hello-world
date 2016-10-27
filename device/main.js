@@ -1,18 +1,48 @@
-var interval = 1000,
+const wifi = require('Wifi');
+const http = require('http');
 
-    colors = ["blue", "green", "red"],
-    index = 0;
+let interval = 5000,
+    color = null;
 
-function setLights (color) {
-  digitalWrite(D0, color === "blue");
-  digitalWrite(D1, color === "green");
-  digitalWrite(D2, color === "red");
+let httpOptions = {
+  host: 'iot-hello-world.herokuapp.com',
+  path: '/color',
+  method: 'GET'
+};
+
+wifi.connect("CenturyLink1796", { password: "3ebc73c7dkebra" }, error => {
+  if (error) {
+    console.error("WiFi error: " + error)
+  } else {
+    console.log("Connected to WiFi");
+    getColor();
+  };
+});
+
+function getColor() {
+  http.get(httpOptions, (res) => {
+    console.log("HTTP get...");
+
+    res.on('data', (data) => {
+      data = JSON.parse(data);
+      color = data.color;
+      setLEDColor();
+    });
+  });
 }
 
-setInterval(function(){
+function setLEDColor() {
+  console.log("Setting color to " + color);
 
-  setLights( colors[index] );
+  let blue  = color === "blue",
+      green = color === "green",
+      red   = color === "red";
 
-  index = (index + 1) % 3;
+  digitalWrite(D0, blue);
+  digitalWrite(D2, green);
+  digitalWrite(D4, red);
+}
 
+setInterval(() => {
+    getColor();
 }, interval);

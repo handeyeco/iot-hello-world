@@ -29,7 +29,7 @@ export default class app extends Component {
     this.requestColor();
 
     // Request color every  five seconds
-    // setInterval(this.requestColor.bind(this), 5000);
+    setInterval(this.requestColor.bind(this), 2000);
   }
 
 

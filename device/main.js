@@ -1,65 +1,73 @@
-// Import modules
-const wifi = require('Wifi');
-const http = require('http');
+// Run code when board loads up
+E.on("init", () => {
 
-// Import WiFi credentials
-const {ssid, pw} = require('./private/wifi.js');
+  // Import modules
+  const wifi = require('Wifi');
+  const http = require('http');
 
-// State of LED color
-let color = null;
+  // Import WiFi credentials
+  const {ssid, pw} = require('./private/wifi.js');
 
-// Information on where to pull
-// JSON object for LED state
-let httpOptions = {
-  host: 'iot-hello-world.herokuapp.com',
-  path: '/color',
-  method: 'GET'
-};
+  // State of LED color
+  let color = null;
 
-
-// Connect to WiFi
-wifi.connect(ssid, { password: pw }, error => {
-  if (error) {
-    console.error("WiFi error: " + error)
-  } else {
-    console.log("Connected to WiFi.");
-    getColor();
+  // Information on where to pull
+  // JSON object for LED state
+  let httpOptions = {
+    host: 'iot-hello-world.herokuapp.com',
+    path: '/color',
+    method: 'GET'
   };
-});
 
 
-// Make HTTP GET request for LED state JSON
-function getColor() {
-  http.get(httpOptions, (res) => {
-    console.log("HTTP get...");
-
-    // When data is returned update LED color state
-    res.on('data', (data) => {
-      data = JSON.parse(data);
-      color = data.color;
-      setLEDColor();
-    });
+  // Connect to WiFi
+  wifi.connect(ssid, { password: pw }, error => {
+    if (error) {
+      console.error("WiFi error: " + error)
+    } else {
+      console.log("Connected to WiFi.");
+      getColor();
+    };
   });
-}
 
 
-// Update the physical LEDs
-function setLEDColor() {
-  console.log("Setting color to " + color);
+  // Make HTTP GET request for LED state JSON
+  function getColor() {
+    http.get(httpOptions, (res) => {
+      console.log("HTTP get...");
 
-  // If truthy...
-  let blue  = color === "blue",
-      green = color === "green",
-      red   = color === "red";
-
-  // ...light LED
-  digitalWrite(D0, blue);   // D3 on board
-  digitalWrite(D2, green);  // D4 on board
-  digitalWrite(D4, red);    // D2 on board
-}
+      // When data is returned update LED color state
+      res.on('data', (data) => {
+        data = JSON.parse(data);
+        color = data.color;
+        setLEDColor();
+      });
+    });
+  }
 
 
-// Interval to check/update color state
-setInterval(() => {
-    getColor();
-}, 2000);
+  // Update the physical LEDs
+  function setLEDColor() {
+    console.log("Setting color to " + color);
+
+    // If truthy...
+    let blue  = color === "blue",
+        green = color === "green",
+        red   = color === "red";
+
+    // ...light LED
+    digitalWrite(D0, blue);   // D3 on board
+    digitalWrite(D2, green);  // D4 on board
+    digitalWrite(D4, red);    // D2 on board
+  }
+
+
+  // Interval to check/update color state
+  setInterval(() => {
+      getColor();
+  }, 2000);
+
+}); // End init
+
+// Save code to board hypothetically!
+save();

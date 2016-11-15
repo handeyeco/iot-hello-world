@@ -16,7 +16,13 @@ var _bodyParser = require("body-parser");
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
+var _cors = require("cors");
+
+var _cors2 = _interopRequireDefault(_cors);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+app.use((0, _cors2.default)());
 
 // Start instance of express and set port
 var app = (0, _express2.default)();

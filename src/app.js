@@ -4,8 +4,6 @@ import express from "express";
 import parser from "body-parser";
 import cors from "cors";
 
-app.use(cors());
-
 // Start instance of express and set port
 const app = express();
 const port = process.env.PORT || 8080;
@@ -15,6 +13,7 @@ const port = process.env.PORT || 8080;
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
+app.use(cors());
 
 // Create instance of LED class
 const led = new LED();

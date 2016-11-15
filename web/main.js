@@ -1,10 +1,10 @@
-const container = document.getElementById('container');
-const colors = Array.from(document.getElementsByClassName('color'));
+var container = document.getElementById('container');
+var colors = Array.prototype.slice.call(document.getElementsByClassName('color'));
 
-let colorState = null;
+var colorState = null;
 
 initialize();
-const pingInterval = window.setInterval(getServerColor, 1000);
+var pingInterval = window.setInterval(getServerColor, 5000);
 
 /******************************************
 
@@ -18,6 +18,7 @@ function initialize() {
   });
 
   //Set resize callback to adjust portrait display
+  columnOrRow();
   window.onresize = columnOrRow;
 
   //Ping server for current color
@@ -35,7 +36,7 @@ function validateColor(color) {
 
 function handleColorClick(event) {
   //Grab color from event
-  let color = event.target.id;
+  var color = event.target.id;
 
   setServerColor(color);
 }
@@ -47,7 +48,7 @@ DISPLAY
 ******************************************/
 function isPortrait () {
   //Get window dimensions
-  let width = window.innerWidth,
+  var width = window.innerWidth,
       height = window.innerHeight;
 
   //Return true if portrait else false
@@ -77,7 +78,7 @@ function setColorState(color) {
   //otherwise set color to input
   color = color.color || color;
 
-  console.log(colorState + " => " + color);
+  // console.log(colorState + " => " + color);
 
   //If input is different than current state
   if (color != colorState) {

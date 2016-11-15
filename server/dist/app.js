@@ -22,8 +22,6 @@ var _cors2 = _interopRequireDefault(_cors);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-app.use((0, _cors2.default)());
-
 // Start instance of express and set port
 var app = (0, _express2.default)();
 var port = process.env.PORT || 8080;
@@ -31,6 +29,8 @@ var port = process.env.PORT || 8080;
 // Register body-parser
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
+
+app.use((0, _cors2.default)());
 
 // Create instance of LED class
 var led = new _LED2.default();

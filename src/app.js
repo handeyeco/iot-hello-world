@@ -2,7 +2,9 @@ import LED from "./LED";
 import http from "http";
 import express from "express";
 import parser from "body-parser";
+import cors from "cors";
 
+app.use(cors());
 
 // Start instance of express and set port
 const app = express();

@@ -13,13 +13,6 @@ const port = process.env.PORT || 8080;
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
-// Enable CORS
-// const corsOptions = {
-//   origin: 'http://iot.matthewbryancurtis.com/',
-//   optionsSuccessStatus: 200
-// };
-// app.use(cors());
-
 // Create instance of LED class
 const led = new LED();
 
@@ -27,18 +20,23 @@ const led = new LED();
 // -------------------------->
 // ROUTES -------------------->
 // ---------------------------->
-app.get("/color", cors(), function(req, res) {
-  console.log("Color is set to: " + led.color);
 
-  res.json({ color: led.color });
-});
-
+// On request send JSON file with LED state
 app.get("/device", function(req, res) {
   console.log("Color is set to: " + led.color);
 
   res.json({ color: led.color });
 });
 
+// Device can't accept CORS header
+// Website needs CORS header (this is for the site)
+app.get("/color", cors(), function(req, res) {
+  console.log("Color is set to: " + led.color);
+
+  res.json({ color: led.color });
+});
+
+// Send update color state
 app.post("/color", cors(), function(req, res) {
 
   // Grab color from body of the request

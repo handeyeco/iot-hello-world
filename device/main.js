@@ -19,6 +19,8 @@ const httpOptions = {
 
 // Connect to WiFi
 function connectWifi() {
+  resetPins();
+
   wifi.connect(ssid, { password: pw }, error => {
     if (error) {
       console.error("WiFi error: " + error)
@@ -29,6 +31,13 @@ function connectWifi() {
   });
 
   setGetInterval();
+}
+
+
+function resetPins() {
+  digitalWrite(D0, false);
+  digitalWrite(D2, false);
+  digitalWrite(D4, false);
 }
 
 
@@ -72,6 +81,10 @@ function setGetInterval() {
   }, 2000);
 }
 
-// E.on("init", connectWifi);
-// save();
-connectWifi();
+
+// Turn off all pins before saving
+resetPins();
+
+//Select init function and save
+E.on("init", connectWifi);
+save();

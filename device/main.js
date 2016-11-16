@@ -12,7 +12,7 @@ let color = null;
 // JSON object for LED state
 const httpOptions = {
   host: 'iot-hello-world.herokuapp.com',
-  path: '/color',
+  path: '/device',
   method: 'GET'
 };
 

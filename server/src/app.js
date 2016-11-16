@@ -14,11 +14,11 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 // Enable CORS
-const corsOptions = {
-  origin: 'http://iot.matthewbryancurtis.com/',
-  optionsSuccessStatus: 200
-};
-app.use(cors());
+// const corsOptions = {
+//   origin: 'http://iot.matthewbryancurtis.com/',
+//   optionsSuccessStatus: 200
+// };
+// app.use(cors());
 
 // Create instance of LED class
 const led = new LED();
@@ -33,6 +33,11 @@ app.get("/color", function(req, res) {
   res.json({ color: led.color });
 });
 
+app.get("/device", cors(), function(req, res) {
+  console.log("Color is set to: " + led.color);
+
+  res.json({ color: led.color });
+});
 
 app.post("/color", function(req, res) {
 

@@ -35,7 +35,7 @@ var corsOptions = {
   origin: 'http://iot.matthewbryancurtis.com/',
   optionsSuccessStatus: 200
 };
-app.use((0, _cors2.default)(corsOptions));
+app.use((0, _cors2.default)());
 
 // Create instance of LED class
 var led = new _LED2.default();

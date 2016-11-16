@@ -27,13 +27,13 @@ const led = new LED();
 // -------------------------->
 // ROUTES -------------------->
 // ---------------------------->
-app.get("/color", function(req, res) {
+app.get("/color", cors(), function(req, res) {
   console.log("Color is set to: " + led.color);
 
   res.json({ color: led.color });
 });
 
-app.get("/device", cors(), function(req, res) {
+app.get("/device", function(req, res) {
   console.log("Color is set to: " + led.color);
 
   res.json({ color: led.color });

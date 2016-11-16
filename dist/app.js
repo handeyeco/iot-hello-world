@@ -16,11 +16,9 @@ var _bodyParser = require("body-parser");
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _cors = require("cors");
-
-var _cors2 = _interopRequireDefault(_cors);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import cors from "cors";
 
 // Start instance of express and set port
 var app = (0, _express2.default)();
@@ -30,7 +28,8 @@ var port = process.env.PORT || 8080;
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 
-app.use((0, _cors2.default)());
+// Enable CORS
+// app.use(cors());
 
 // Create instance of LED class
 var led = new _LED2.default();

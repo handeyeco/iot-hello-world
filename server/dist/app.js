@@ -55,7 +55,7 @@ app.get("/device", function (req, res) {
   res.json({ color: led.color });
 });
 
-app.post("/color", function (req, res) {
+app.post("/color", (0, _cors2.default)(), function (req, res) {
 
   // Grab color from body of the request
   var color = req.body.color;

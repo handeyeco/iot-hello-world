@@ -43,13 +43,13 @@ var led = new _LED2.default();
 // -------------------------->
 // ROUTES -------------------->
 // ---------------------------->
-app.get("/color", function (req, res) {
+app.get("/color", (0, _cors2.default)(), function (req, res) {
   console.log("Color is set to: " + led.color);
 
   res.json({ color: led.color });
 });
 
-app.get("/device", (0, _cors2.default)(), function (req, res) {
+app.get("/device", function (req, res) {
   console.log("Color is set to: " + led.color);
 
   res.json({ color: led.color });

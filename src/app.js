@@ -39,7 +39,7 @@ app.get("/device", function(req, res) {
   res.json({ color: led.color });
 });
 
-app.post("/color", function(req, res) {
+app.post("/color", cors(), function(req, res) {
 
   // Grab color from body of the request
   let color = req.body.color;

@@ -2,7 +2,7 @@ import LED from "./LED";
 import http from "http";
 import express from "express";
 import parser from "body-parser";
-// import cors from "cors";
+import cors from "cors";
 
 // Start instance of express and set port
 const app = express();
@@ -14,7 +14,11 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 // Enable CORS
-// app.use(cors());
+const corsOptions = {
+  origin: 'http://iot.matthewbryancurtis.com/',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 // Create instance of LED class
 const led = new LED();

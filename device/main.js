@@ -3,7 +3,7 @@ const wifi = require('Wifi');
 const http = require('http');
 
 // Import WiFi credentials
-const {ssid, pw} = require('./private/phone_wifi.js');
+const {ssid, pw} = require('./private/wifi.js');
 
 // State of LED color
 let color = null;
@@ -39,6 +39,8 @@ function getColor() {
 
     // When data is returned update LED color state
     res.on('data', (data) => {
+      console.log("Received data:");
+      console.log(data);
       data = JSON.parse(data);
       color = data.color;
       setLEDColor();

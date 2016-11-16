@@ -16,9 +16,11 @@ var _bodyParser = require("body-parser");
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _cors = require("cors");
 
-// import cors from "cors";
+var _cors2 = _interopRequireDefault(_cors);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Start instance of express and set port
 var app = (0, _express2.default)();
@@ -29,7 +31,11 @@ app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 
 // Enable CORS
-// app.use(cors());
+var corsOptions = {
+  origin: 'http://iot.matthewbryancurtis.com/',
+  optionsSuccessStatus: 200
+};
+app.use((0, _cors2.default)(corsOptions));
 
 // Create instance of LED class
 var led = new _LED2.default();

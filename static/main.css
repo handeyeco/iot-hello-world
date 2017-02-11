@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.color {
+  height: 100vh;
+  width: 33.3333vw;
+}
+
+.container.portrait {
+  flex-direction: column;
+}
+
+.container.portrait .color {
+  height: 33.3333vh;
+  width: 100vw;
+}
+
+.blue {
+  background: #0D8599;
+}
+
+.green {
+  background: #598C00;
+}
+
+.red {
+  background: #8F2323;
+}
+
+.blue.active {
+  background: #14D4F4;
+}
+
+.green.active {
+  background: #8EE000;
+}
+
+.red.active {
+  background: #E53838;
+}

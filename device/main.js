@@ -3,7 +3,7 @@ const wifi = require('Wifi');
 const http = require('http');
 
 // Import WiFi credentials
-const {ssid, pw} = require('./private/wifi.js');
+const {ssid, pw} = require('./private/mozilla.js');
 
 // State of LED color
 let color = null;

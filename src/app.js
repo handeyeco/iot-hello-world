@@ -8,6 +8,20 @@ import cors from "cors";
 const app = express();
 const port = process.env.PORT || 8080;
 
+function JSON_response(color) {
+  return {
+    color: led.color,
+    links: [
+      "http://iot-hello-world.herokuapp.com/color",
+      "http://iot.matthewbryancurtis.com/"
+    ],
+    address: {
+      city: "Portland",
+      state: "Oregon"
+    }
+  }
+}
+
 
 // Register body-parser
 app.use(parser.json());
@@ -25,17 +39,7 @@ const led = new LED();
 app.get("/device", function(req, res) {
   console.log("Color is set to: " + led.color);
 
-  res.json({
-    color: led.color,
-    links: [
-      url: "http://iot-hello-world.herokuapp.com/color",
-      controller: "http://iot.matthewbryancurtis.com/"
-    ],
-    address: [
-      city: "Portland",
-      state: "Oregon"
-    ]
-  });
+  res.json(JSON_response(led.color));
 });
 
 // Device can't accept CORS header
@@ -43,17 +47,7 @@ app.get("/device", function(req, res) {
 app.get("/color", cors(), function(req, res) {
   console.log("Color is set to: " + led.color);
 
-  res.json({
-    color: led.color,
-    links: [
-      url: "http://iot-hello-world.herokuapp.com/color",
-      controller: "http://iot.matthewbryancurtis.com/"
-    ],
-    address: [
-      city: "Portland",
-      state: "Oregon"
-    ]
-  });
+  res.json(JSON_response(led.color));
 });
 
 // Send update color state
@@ -76,17 +70,7 @@ app.post("/color", cors(), function(req, res) {
   // Console log color and return JSON object
   console.log("Color currently set to: " + led.color);
 
-  res.json({
-    color: led.color,
-    links: [
-      url: "http://iot-hello-world.herokuapp.com/color",
-      controller: "http://iot.matthewbryancurtis.com/"
-    ],
-    address: [
-      city: "Portland",
-      state: "Oregon"
-    ]
-  });
+  res.json(JSON_response(led.color));
 });
 
 

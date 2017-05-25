@@ -25,7 +25,17 @@ const led = new LED();
 app.get("/device", function(req, res) {
   console.log("Color is set to: " + led.color);
 
-  res.json({ color: led.color });
+  res.json({
+    color: led.color,
+    links: [
+      url: "http://iot-hello-world.herokuapp.com/color",
+      controller: "http://iot.matthewbryancurtis.com/"
+    ],
+    address: [
+      city: "Portland",
+      state: "Oregon"
+    ]
+  });
 });
 
 // Device can't accept CORS header
@@ -33,7 +43,17 @@ app.get("/device", function(req, res) {
 app.get("/color", cors(), function(req, res) {
   console.log("Color is set to: " + led.color);
 
-  res.json({ color: led.color });
+  res.json({
+    color: led.color,
+    links: [
+      url: "http://iot-hello-world.herokuapp.com/color",
+      controller: "http://iot.matthewbryancurtis.com/"
+    ],
+    address: [
+      city: "Portland",
+      state: "Oregon"
+    ]
+  });
 });
 
 // Send update color state

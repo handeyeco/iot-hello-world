@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080;
 
 function JSON_response(color) {
   return {
-    color: led.color,
+    color: color,
     links: [
       "http://iot-hello-world.herokuapp.com/color",
       "http://iot.matthewbryancurtis.com/"

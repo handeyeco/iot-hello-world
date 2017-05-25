@@ -46,7 +46,17 @@ var led = new _LED2.default();
 app.get("/color", (0, _cors2.default)(), function (req, res) {
   console.log("Color is set to: " + led.color);
 
-  res.json({ color: led.color });
+  res.json({
+    color: led.color,
+    links: [
+      "http://iot-hello-world.herokuapp.com/color",
+      "http://iot.matthewbryancurtis.com/"
+    ],
+    address: {
+      city: "Portland",
+      state: "Oregon"
+    }
+  });
 });
 
 app.get("/device", function (req, res) {

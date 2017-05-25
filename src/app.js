@@ -56,7 +56,17 @@ app.post("/color", cors(), function(req, res) {
   // Console log color and return JSON object
   console.log("Color currently set to: " + led.color);
 
-  res.json({ color: led.color });
+  res.json({
+    color: led.color,
+    links: [
+      url: "http://iot-hello-world.herokuapp.com/color",
+      controller: "http://iot.matthewbryancurtis.com/"
+    ],
+    address: [
+      city: "Portland",
+      state: "Oregon"
+    ]
+  });
 });
 
 
